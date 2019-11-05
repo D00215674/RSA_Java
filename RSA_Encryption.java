@@ -15,43 +15,6 @@ public class RSA_Encryption {
         
         Random rando = new Random();
         Scanner keyb = new Scanner(System.in);
-//        int[] keys = new int[2];
-//        List<Integer> primes = retrievePrimes();
-//        
-//        System.out.println("Please choose your keys from the list above:");
-//        keys[0] = keyb.nextInt();
-//        keys[1] = keyb.nextInt();
-//        System.out.println("Keys chosen = " + keys[0] + ", " + keys[1]);
-//        
-//        int n = keys[0] * keys[1];
-//        int phi = (keys[0] - 1) * (keys[1] - 1); //phi = (p-1)*(q-1)
-//        int e = 0;
-//        boolean coprime = false;
-//        
-//        while(coprime == false)
-//        {
-//            e = 1 + rando.nextInt(phi - 1);
-//            
-//            if(coprimeCheck(phi, e) && coprimeCheck(n, e))
-//        {
-//            System.out.println("e is confirmed coprime with n and fi");
-//            coprime = true;
-//        }   
-//        }
-//        
-//        int d = 0;
-//        
-//        while(d == 0)
-//        {
-//            for(int i = 2; i < n; i++)
-//            {
-//                if((e * i) % phi == 1) //Reiterate d*e(mod phi) until it is equal to 1
-//                {
-//                    d = i; //When found, d will finally be given its value
-//                    break;
-//                }
-//            }
-//        }
         
         BigInteger p = BigInteger.probablePrime(512, rando);    //Generate P using BigInteger.probabePrime()
         System.out.println("P generated");
@@ -65,18 +28,6 @@ public class RSA_Encryption {
         System.out.println("E genrated");
         BigInteger d = extendedEuclid(e, phi)[1];   //Generate D = D * E == 1(mod Phi(n)) D is the inverse
         System.out.println("D generated");
-        
-//        while(coprime == false)
-//        {     
-//            if(coprimeCheck(e, phi))
-//            {
-//                coprime = true;
-//            }
-//            else
-//            {
-//                e = new BigInteger(512, rando);
-//            }
-//        }
         
         System.out.println("p = " + p);
         System.out.println("q = " + q);
@@ -97,34 +48,6 @@ public class RSA_Encryption {
         String ogMessage = cipherToString(decryptedText);
         System.out.println("Decrypted & restored ciphertext = " + ogMessage);
     }
-    
-//    public static int createKeys(List<Integer> list)
-//    {
-//        List<Integer> primes = list;
-//        Random rando = new Random();
-//        List<Integer> keys = new ArrayList<>();
-//        for(int i = 0; i <= keys.size(); i++)
-//        {
-//            Integer a = 0 + rando.nextInt(primes.size());
-//            keys.add(primes.get(a));
-//        }
-//        return keys;
-//    }
-    
-//    public static boolean gcd(int a, int b)
-//    {
-//        boolean gcd = true;
-//        
-//        for (int i = 2; i <= a && i <= b; i++)
-//        {
-//            if(a % i == 0 && b % i == 0)
-//            {
-//                gcd = false;
-//            }
-//        }
-//        
-//        return gcd;
-//    }
     
     public static BigInteger gcd(BigInteger a, BigInteger b)
     {
@@ -178,42 +101,10 @@ public class RSA_Encryption {
         return check;
     }
     
-//    public static boolean coprimeCheck(int a, int b) 
-//    {
-//        
-//        boolean check = false;
-//        BigInteger b1 = BigInteger.valueOf(a);
-//        BigInteger b2 = BigInteger.valueOf(b);
-//        BigInteger gcd = b1.gcd(b2);
-//    
-//        if(gcd.intValue() == 1)
-//        {
-//            check = true;
-//        }
-//        return check;
-//    }
-    
     public static BigInteger encrypt(BigInteger e, BigInteger n, BigInteger message)
     {
-//        BigInteger b1 = BigInteger.valueOf(e);
-//        BigInteger b2 = BigInteger.valueOf(n);
         
         BigInteger cipherText = message.modPow(e, n);
-        
-//        BigInteger text = BigInteger.valueOf(message);
-//        BigInteger mod = BigInteger.valueOf(n);
-//        BigInteger cipherText = text.pow(d);
-//        cipherText = cipherText.mod(mod);
-        
-//        for(int i = 1; i <= p; i++)
-//        {
-//            cipherText = cipherText * text;
-//        }`
-//        
-//        while (cipherText > n)
-//        {
-//            cipherText = cipherText - n;
-//        }
         
         return cipherText;
     }
